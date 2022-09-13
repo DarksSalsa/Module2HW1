@@ -22,18 +22,18 @@ namespace Logging
                         res = Actions.ErrorMethod();
                         break;
                     default:
-                        res = new() { ErrorMessage = "Something went wrong..." , Status = false};
+                        res = new(status:false, errorMessage: "Something went wrong...");
                         break;
                 }
                 if (res.Status == false)
                 {
-                    Logger.Message(Logger.LogType.Error, $"Action failed by a reason: {res.ErrorMessage}");
+                    Logger.GetInstance.Message(Logger.LogType.Error, $"Action failed by a reason: {res.ErrorMessage}");
                 }
 
                 //Comment to remove the pause(used for showing the difference)
                 System.Threading.Thread.Sleep(20);
             }
-            File.WriteAllText("log.txt", Logger.LogData);
+            File.WriteAllText("log.txt", Logger.GetInstance.LogData.ToString());
         }
     }
 }

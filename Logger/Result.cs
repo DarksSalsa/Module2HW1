@@ -13,7 +13,20 @@
         public string ErrorMessage
         {
             get { return _errorMessage; }
-            set { _errorMessage = value; }
+            set 
+            { 
+                if(value!=null)
+                {
+                    _errorMessage = value;
+                }
+                
+            }
         }
+
+        public Result(bool status, string errorMessage)        {
+            Status = status;
+            ErrorMessage = errorMessage;
+        }
+
     }
 }

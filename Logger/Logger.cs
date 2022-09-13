@@ -1,11 +1,12 @@
 ﻿using System.Runtime.CompilerServices;
+using System.Text;
 
 namespace Logging
 {
     public class Logger
     {
         private static readonly Logger Instance = new();
-        public static string? LogData;
+        public StringBuilder LogData = new();
         public enum LogType
         {
             Error,
@@ -26,10 +27,10 @@ namespace Logging
             }
         }
 
-        public static void Message(LogType type, string details)
+        public void Message(LogType type, string details)
         {
             string ConstructMessage = $"{DateTime.Now:T}: {type}: {details}";
-            LogData += $"{ConstructMessage}\n";
+            LogData.AppendLine($"{ConstructMessage}");
         }
 
     }
